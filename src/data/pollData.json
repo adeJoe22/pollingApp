@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "1",
+    "question": "Have you heard about CodeLab?",
+    "answers": [
+      { "option": "Absolutely", "votes": 0 },
+      { "option": "Kind of", "votes": 0 },
+      { "option": "Not at all", "votes": 0 }
+    ]
+  },
+  {
+    "_id": "2",
+    "question": "What is the core value CodeLab offer?",
+    "answers": [
+      { "option": "Training people coding skills", "votes": 0 },
+      { "option": "Helping underserved people redeem time", "votes": 0 },
+      { "option": "Scamming youths everywhere", "votes": 0 }
+    ]
+  },
+  {
+    "_id": "3",
+    "question": "Which is CodeLab's core stack?",
+    "answers": [
+      { "option": "MERN", "votes": 0 },
+      { "option": "Ruby on Rails", "votes": 0 },
+      { "option": "Django", "votes": 0 }
+    ]
+  }
+]

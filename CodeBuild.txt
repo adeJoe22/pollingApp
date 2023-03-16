@@ -1,0 +1,95 @@
+import React from "react";
+import styled from "styled-components";
+import pollData from "../data/pollData.json";
+
+const Homepage = () => {
+  const colors = [
+    { bg: "crimson", border: "1px solid crimson" },
+    { bg: "blue", border: "1px solid blue" },
+    { bg: "green", border: "1px solid green" },
+  ];
+
+  return (
+    <Container>
+      <Wrapper>
+        <Title>CodeLab Polling App</Title>
+        <List {...{collection, renderItem: ()=> {
+          
+        }}}/>
+        {pollData.map((data) => {
+          const color = colors[parseInt(Math.random() * colors.length)];
+          return (
+            <PollWrapper>
+              <Question>{data.question}</Question>
+              <div>
+                {data.answers.map((answer) => {
+                  const max = data.answers.reduce(
+                    (acc, answer) => acc + parseInt(answer.votes),
+                    0
+                  );
+                  const { votes, option } = answer;
+                  const voteWidth = (votes / max) * 100;
+
+                  return (
+                    <PollBorder border={color.border}>
+                      <PollContent width={voteWidth} bg={color.bg}>
+                        <Votes>
+                          {option} - {voteWidth}%
+                        </Votes>
+                      </PollContent>
+                    </PollBorder>
+                  );
+                })}
+              </div>
+            </PollWrapper>
+          );
+        })}
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default Homepage;
+
+const List = ({ collection, renderItem = (item) => item }) => {
+  return <Wrapper>{collection.map((item) => renderItem(item))}</Wrapper>;
+};
+
+const Container = styled.div`
+  margin-top: 10px;
+  padding: 30px 50px;
+  margin: 0 auto;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  gap: 10px;
+`;
+
+const Title = styled.h1`
+  font-size: 32px;
+  font-weight: 800;
+`;
+
+const PollWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+const Question = styled.h3``;
+const Votes = styled.span``;
+
+const PollBorder = styled.div`
+  border: ${({ border }) => border};
+  width: 100%;
+  margin-bottom: 8px;
+`;
+const PollContent = styled.div`
+  background-color: ${({ bg }) => bg};
+  padding: 4px;
+  overflow-x: visible;
+  white-space: nowrap;
+  width: ${({ width }) => `${width}%`};
+`;
